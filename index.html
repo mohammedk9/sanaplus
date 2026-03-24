@@ -58,7 +58,7 @@
                 </button>
                 <button onclick="switchTab('offers')" id="btn-offers"
                     class="px-8 py-3 rounded-full font-bold transition-all duration-300 bg-white text-[#4a3f54] border-2 border-[#4a3f54] hover:bg-[#f3f0eb] shadow-sm">
-                    🔥 العروض الخاصة
+                    🔥 العروض 
                 </button>
             </div>
             <div class="w-24 h-1 bg-[#4a3f54] mx-auto opacity-20 mt-8"></div>
@@ -264,7 +264,7 @@
         <footer class="mt-24 text-center border-t border-gray-200 pt-8 opacity-70">
             <p>جميع الأسعار تشمل ضريبة القيمة المضافة</p>
             <p class="mt-2 text-sm font-bold">فريق سنا بلس</p>
-            <p class="mt-2 text-sm">للشكوى والاقتراحات التواصل عبر <a href="tel:+966501113597" class="underline">+966501113597</a></p>
+           <p class="mt-2 text-sm">للشكوى والاقتراحات التواصل عبر <a href="tel:0501113597" class="underline">0501113597</a></p>
         </footer>
     </div>
 
@@ -304,14 +304,21 @@
                 const offer = doc.data();
                 const card = document.createElement('div');
                 card.className = 'offer-card border-2 border-dashed border-[#d97706] p-6 rounded-2xl bg-white shadow-sm relative overflow-hidden';
+                
+                // إضافة السعر السابق فقط في حال وجوده في Firebase
+                const oldPriceHtml = offer.oldPrice ? `<div class="text-sm text-gray-400 line-through">${offer.oldPrice} ر.س</div>` : '';
+
                 card.innerHTML = `
                     <div class="flex justify-between items-start">
                         <div class="flex-1">
                             <h3 class="text-xl font-bold text-[#4a3f54]">${offer.title}</h3>
                             <p class="opacity-70 mt-2">${offer.description}</p>
                         </div>
-                        <div class="text-3xl font-bold text-[#d97706] mr-4 whitespace-nowrap">
-                            ${offer.price} <span class="text-sm text-[#4a3f54]">ر.س</span>
+                        <div class="text-right mr-4 whitespace-nowrap">
+                            ${oldPriceHtml}
+                            <div class="text-3xl font-bold text-[#d97706]">
+                                ${offer.price} <span class="text-sm text-[#4a3f54]">ر.س</span>
+                            </div>
                         </div>
                     </div>`;
                 container.appendChild(card);

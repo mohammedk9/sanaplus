@@ -158,9 +158,11 @@
     </div>
 
     <script>
-    // ⚠️ استبدل بنفس قيم index.html بالضبط
+    // =============================================
+    //  ⚠️ ضع نفس إعدادات Firebase
+    // =============================================
     const firebaseConfig = {
-    apiKey: "AIzaSyCHjzKzjxKp1J-r-0pyLfoKTRTZmSBZUj4",
+        apiKey: "AIzaSyCHjzKzjxKp1J-r-0pyLfoKTRTZmSBZUj4",
   authDomain: "sanaplus-3cf54.firebaseapp.com",
   projectId: "sanaplus-3cf54",
   storageBucket: "sanaplus-3cf54.firebasestorage.app",
@@ -172,10 +174,17 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // ⚠️ غيّر كلمة المرور هذه
-    const ADMIN_PASSWORD = "Sanaplus9559";
+    // =============================================
+    //  ⚠️ غيّر هذه القيم!
+    //  ADMIN_PASSWORD = كلمة مرور شاشة الدخول
+    //  WRITE_SECRET = نفس المفتاح في Firestore Rules
+    // =============================================
+    const ADMIN_PASSWORD = "sana2025";
+    const WRITE_SECRET = "SanaPlus2025SecretKey";
 
-    // تسجيل الدخول
+    // =============================================
+    //  تسجيل الدخول / الخروج
+    // =============================================
     function login() {
         const pw = document.getElementById('admin-password').value;
         if (pw === ADMIN_PASSWORD) {
@@ -197,7 +206,9 @@
         if (e.key === 'Enter') login();
     });
 
-    // تحميل العروض
+    // =============================================
+    //  تحميل العروض (للعرض فقط - read)
+    // =============================================
     function loadOffers() {
         db.collection('offers').orderBy('order', 'asc').onSnapshot((snapshot) => {
             const list = document.getElementById('offers-list');
@@ -261,7 +272,9 @@
         document.getElementById('stat-inactive').textContent = i;
     }
 
-    // النموذج
+    // =============================================
+    //  النموذج
+    // =============================================
     function showForm() {
         document.getElementById('offer-form').classList.remove('hidden');
         document.getElementById('form-title').textContent = '➕ إضافة عرض جديد';
@@ -280,7 +293,9 @@
         document.getElementById('add-btn').classList.remove('hidden');
     }
 
-    // حفظ
+    // =============================================
+    //  حفظ العرض (مع المفتاح السري)
+    // =============================================
     async function saveOffer() {
         const id = document.getElementById('offer-id').value;
         const title = document.getElementById('offer-title').value.trim();
@@ -290,9 +305,22 @@
         const badge = document.getElementById('offer-badge').value.trim() || null;
         const order = Number(document.getElementById('offer-order').value) || 1;
 
-        if (!title || !description || !price) { alert('يرجى تعبئة الحقول المطلوبة *'); return; }
+        if (!title || !description || !price) {
+            alert('يرجى تعبئة الحقول المطلوبة *');
+            return;
+        }
 
-        const data = { title, description, price, oldPrice, badge, order };
+        // ✅ نضيف المفتاح السري مع البيانات للتحقق في القواعد
+        const data = {
+            title,
+            description,
+            price,
+            oldPrice,
+            badge,
+            order,
+            secret: WRITE_SECRET  // ← هذا يُستخدم فقط للتحقق في Rules
+        };
+
         try {
             if (id) {
                 await db.collection('offers').doc(id).update(data);
@@ -304,10 +332,15 @@
                 showToast('تم إضافة العرض 🎉');
             }
             hideForm();
-        } catch (e) { alert('خطأ: ' + e.message); }
+        } catch (e) {
+            alert('خطأ: ' + e.message);
+            console.error(e);
+        }
     }
 
-    // تعديل
+    // =============================================
+    //  تعديل عرض
+    // =============================================
     async function editOffer(id) {
         const doc = await db.collection('offers').doc(id).get();
         const o = doc.data();
@@ -324,26 +357,47 @@
         document.getElementById('offer-form').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // تفعيل/إيقاف
+    // =============================================
+    //  تفعيل / إيقاف (مع المفتاح السري)
+    // =============================================
     async function toggleOffer(id, current) {
-        await db.collection('offers').doc(id).update({ isActive: !current });
-        showToast(current ? 'تم إيقاف العرض ⏸️' : 'تم تفعيل العرض ▶️');
+        try {
+            await db.collection('offers').doc(id).update({
+                isActive: !current,
+                secret: WRITE_SECRET  // ← للتحقق
+            });
+            showToast(current ? 'تم إيقاف العرض ⏸️' : 'تم تفعيل العرض ▶️');
+        } catch (e) {
+            alert('خطأ: ' + e.message);
+        }
     }
 
-    // حذف
+    // =============================================
+    //  حذف عرض (مع المفتاح السري)
+    // =============================================
     function showDeleteModal(id) {
         document.getElementById('delete-offer-id').value = id;
         document.getElementById('delete-modal').classList.remove('hidden');
     }
-    function closeDeleteModal() { document.getElementById('delete-modal').classList.add('hidden'); }
+    function closeDeleteModal() {
+        document.getElementById('delete-modal').classList.add('hidden');
+    }
     async function confirmDelete() {
         const id = document.getElementById('delete-offer-id').value;
-        await db.collection('offers').doc(id).delete();
-        closeDeleteModal();
-        showToast('تم حذف العرض 🗑️');
+        try {
+            // للحذف نحتاج طريقة مختلفة - نعدّل أولاً ثم نحذف
+            // أو نستخدم قواعد تسمح بالحذف للجميع (لأن الحذف لا يرسل data)
+            await db.collection('offers').doc(id).delete();
+            closeDeleteModal();
+            showToast('تم حذف العرض 🗑️');
+        } catch (e) {
+            alert('خطأ: ' + e.message);
+        }
     }
 
-    // رسالة نجاح
+    // =============================================
+    //  رسالة النجاح
+    // =============================================
     function showToast(msg) {
         const t = document.getElementById('toast');
         document.getElementById('toast-text').textContent = msg;

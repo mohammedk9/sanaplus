@@ -346,6 +346,32 @@
             btnMenu.className = 'px-8 py-3 rounded-full font-bold transition-all duration-300 bg-white text-[#4a3f54] border-2 border-[#4a3f54] hover:bg-[#f3f0eb] shadow-sm';
         }
     }
+        // --- 1. نظام إحصائيات الزوار ---
+function trackVisitor() {
+    const today = new Date().toDateString();
+    const lastVisit = localStorage.getItem('last_visit');
+
+    // إذا لم يزر الموقع اليوم، نقوم بزيادة العداد
+    if (lastVisit !== today) {
+        const statsRef = db.collection('settings').doc('analytics');
+        
+        statsRef.get().then((doc) => {
+            if (!doc.exists) {
+                // إنشاء المستند إذا لم يكن موجوداً
+                statsRef.set({ visitorCount: 1 });
+            } else {
+                // زيادة العداد بمقدار 1
+                statsRef.update({
+                    visitorCount: firebase.firestore.FieldValue.increment(1)
+                });
+            }
+            localStorage.setItem('last_visit', today);
+        }).catch((error) => console.error("Error updating stats:", error));
+    }
+}
+
+// استدعاء الدالة عند تحميل الصفحة
+trackVisitor();
     </script>
 </body>
 </html>

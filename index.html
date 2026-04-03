@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+    <link rel="manifest" href="manifest.json">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قائمة المشروبات والحلا - سنا بلس</title>
@@ -45,7 +46,7 @@
         }
     </style>
 </head>
-    <link rel="manifest" href="manifest.json"> 
+     
 <body class="text-[#4a3f54] p-6 md:p-12">
     <div class="max-w-7xl mx-auto">
         <header class="text-center mb-10">
@@ -261,6 +262,7 @@
                 <h3 class="text-2xl font-bold text-gray-400 mb-2">لا توجد عروض حالياً</h3>
             </div>
         </div>
+ 
 
         <footer class="mt-24 text-center border-t border-gray-200 pt-8 opacity-70">
             <p>جميع الأسعار تشمل ضريبة القيمة المضافة</p>
@@ -347,6 +349,31 @@
             btnMenu.className = 'px-8 py-3 rounded-full font-bold transition-all duration-300 bg-white text-[#4a3f54] border-2 border-[#4a3f54] hover:bg-[#f3f0eb] shadow-sm';
         }
     }
+
+
+async function countUniqueVisitor() {
+    try {
+        const today = new Date().toDateString();
+        // التحقق مما إذا كان الزائر قد دخل اليوم مسبقاً
+        if (localStorage.getItem('visited_today') !== today) {
+            
+            await db.collection('analytics').doc('visitors').set({
+                // زيادة العداد بمقدار 1
+                total: firebase.firestore.FieldValue.increment(1),
+                // تسجيل وقت آخر زيارة (اختياري ولكنه مفيد)
+                lastUpdate: firebase.firestore.FieldValue.serverTimestamp()
+            }, { merge: true });
+
+            // حفظ التاريخ في متصفح المستخدم لعدم تكرار الحساب اليوم
+            localStorage.setItem('visited_today', today);
+        }
+    } catch (error) {
+        console.error("خطأ في تحديث عداد الزوار:", error);
+    }
+}
+
+// استدعاء الدالة
+countUniqueVisitor();
     
     </script>
 </body>

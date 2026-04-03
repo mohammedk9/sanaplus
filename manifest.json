@@ -1,0 +1,15 @@
+{
+  "name": "سنا بلس - المنيو",
+  "short_name": "SanaPlus",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#fcfaf7",
+  "theme_color": "#4a3f54",
+  "icons": [
+    {
+      "src": "sanapluslogo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

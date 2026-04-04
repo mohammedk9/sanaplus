@@ -44,6 +44,19 @@
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
+        .cart-floating {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: #4a3f54;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    display: none; /* تظهر فقط عند إضافة منتج */
+    z-index: 1000;
+    cursor: pointer;
+}
     </style>
 </head>
      
@@ -69,175 +82,269 @@
         <div id="section-menu" class="fade-in">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                 
-                <section class="menu-section">
-                    <h2 class="text-2xl font-bold border-r-4 border-[#4a3f54] pr-3 mb-8">المشروبات الحارة</h2>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div class="flex items-center">
-                                <img src="latte.png" alt="Latte" class="item-img">
-                                <div><h3 class="font-bold">لاتيه</h3><p class="text-sm opacity-60">Hot - Latte</p></div>
-                            </div>
-                            <div class="text-xl font-bold">13 <span class="text-xs">ر.س</span></div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div class="flex items-center">
-                                <img src="spanish-latte.png" alt="Spanish Latte" class="item-img">
-                                <div><h3 class="font-bold">سبانيش لاتيه</h3><p class="text-sm opacity-60">Spanish Latte</p></div>
-                            </div>
-                            <div class="text-xl font-bold">14 <span class="text-xs">ر.س</span></div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div class="flex items-center">
-                                <img src="cortado.png" alt="Cortado" class="item-img">
-                                <div><h3 class="font-bold">كورتادو</h3><p class="text-sm opacity-60">Hot Cortado</p></div>
-                            </div>
-                            <div class="text-xl font-bold">11 <span class="text-xs">ر.س</span></div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div class="flex items-center">
-                                <img src="cappuccino.jpg" alt="Cappuccino" class="item-img">
-                                <div><h3 class="font-bold">كابتشينو</h3><p class="text-sm opacity-60">Cappuccino</p></div>
-                            </div>
-                            <div class="text-xl font-bold">13 <span class="text-xs">ر.س</span></div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div class="flex items-center">
-                                <img src="espresso.png" alt="Espresso" class="item-img">
-                                <div><h3 class="font-bold">اسبريسو</h3><p class="text-sm opacity-60">Espresso</p></div>
-                            </div>
-                            <div class="text-xl font-bold">8 <span class="text-xs">ر.س</span></div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div class="flex items-center">
-                                <img src="flat-white.png" alt="Flat White" class="item-img">
-                                <div><h3 class="font-bold">فلات وايت</h3><p class="text-sm opacity-60">Flat White</p></div>
-                            </div>
-                            <div class="text-xl font-bold">13 <span class="text-xs">ر.س</span></div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div class="flex items-center">
-                                <img src="coffee-day-hot.png" alt="Coffee Day" class="item-img">
-                                <div><h3 class="font-bold">قهوة اليوم</h3><p class="text-sm opacity-60">Coffee - Day</p></div>
-                            </div>
-                            <div class="price-tag text-sm">
-                                <div>صغير: <span class="font-bold text-lg">7</span></div>
-                                <div>كبير: <span class="font-bold text-lg">9</span></div>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div class="flex items-center">
-                                <img src="drip-hot.jpg" alt="V60" class="item-img">
-                                <div><h3 class="font-bold">قهوة مقطرة V60</h3><p class="text-sm opacity-60">Hot Drip Coffee</p></div>
-                            </div>
-                            <div class="text-xl font-bold">14 <span class="text-xs">ر.س</span></div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div class="flex items-center">
-                                <img src="hot-chocolate.jpg" alt="Hot Chocolate" class="item-img">
-                                <div><h3 class="font-bold">هوت تشوكلت</h3><p class="text-sm opacity-60">Hot Chocolate</p></div>
-                            </div>
-                            <div class="text-xl font-bold">15 <span class="text-xs">ر.س</span></div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div class="flex items-center">
-                                <img src="americano-hot.png" alt="Americano" class="item-img">
-                                <div><h3 class="font-bold">امريكانو</h3><p class="text-sm opacity-60">Hot Americano</p></div>
-                            </div>
-                            <div class="text-xl font-bold">11 <span class="text-xs">ر.س</span></div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="menu-section">
-                    <h2 class="text-2xl font-bold border-r-4 border-[#4a3f54] pr-3 mb-8">المشروبات الباردة</h2>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div class="flex items-center">
-                                <img src="ice-latte.jpg" alt="Ice Latte" class="item-img">
-                                <div><h3 class="font-bold">ايس لاتيه</h3><p class="text-sm opacity-60">Ice - Latte</p></div>
-                            </div>
-                            <div class="text-xl font-bold">14 <span class="text-xs">ر.س</span></div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div class="flex items-center">
-                                <img src="ice-spanish.jpg" alt="Ice Spanish" class="item-img">
-                                <div><h3 class="font-bold">ايس سبانيش</h3><p class="text-sm opacity-60">Ice Spanish</p></div>
-                            </div>
-                            <div class="text-xl font-bold">15 <span class="text-xs">ر.س</span></div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div class="flex items-center">
-                                <img src="matcha.png" alt="Matcha" class="item-img">
-                                <div><h3 class="font-bold">ماتشا</h3><p class="text-sm opacity-60">Ice matcha</p></div>
-                            </div>
-                            <div class="text-xl font-bold">16 <span class="text-xs">ر.س</span></div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div class="flex items-center">
-                                <img src="hibiscus.png" alt="Hibiscus" class="item-img">
-                                <div><h3 class="font-bold">ايس كركدية</h3><p class="text-sm opacity-60">Ice Hibiscus</p></div>
-                            </div>
-                            <div class="price-tag text-sm">
-                                <div>صغير: <span class="font-bold text-lg">8</span></div>
-                                <div>كبير: <span class="font-bold text-lg">12</span></div>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div class="flex items-center">
-                                <img src="alfredo-espresso.png" alt="Alfredo" class="item-img">
-                                <div><h3 class="font-bold">الفريدو اسبريسو</h3><p class="text-sm opacity-60">Ice Alfredo</p></div>
-                            </div>
-                            <div class="text-xl font-bold">12 <span class="text-xs">ر.س</span></div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div class="flex items-center">
-                                <img src="ice-americano.png" alt="Ice Americano" class="item-img">
-                                <div><h3 class="font-bold">ايس امريكانو</h3><p class="text-sm opacity-60">Ice Americano</p></div>
-                            </div>
-                            <div class="text-xl font-bold">12 <span class="text-xs">ر.س</span></div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div class="flex items-center">
-                                <img src="ice-coffee-day.jpg" alt="Ice Coffee" class="item-img">
-                                <div><h3 class="font-bold">ايس قهوة اليوم</h3><p class="text-sm opacity-60">Ice Coffee Day</p></div>
-                            </div>
-                            <div class="price-tag text-sm">
-                                <div>صغير: <span class="font-bold text-lg">8</span></div>
-                                <div>كبير: <span class="font-bold text-lg">10</span></div>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div class="flex items-center">
-                                <img src="ice-drip.jpg" alt="Ice V60" class="item-img">
-                                <div><h3 class="font-bold">ايس دريب</h3><p class="text-sm opacity-60">Ice Drip Coffee</p></div>
-                            </div>
-                            <div class="text-xl font-bold">15 <span class="text-xs">ر.س</span></div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="menu-section lg:border-r lg:border-gray-200 lg:pr-8">
-                    <h2 class="text-2xl font-bold border-r-4 border-[#4a3f54] pr-3 mb-8">الحلا</h2>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div><h3 class="font-bold">شوكوميسو</h3><p class="text-sm opacity-60">Chocomisu</p></div>
-                            <div class="text-xl font-bold">18 <span class="text-xs">ر.س</span></div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div><h3 class="font-bold">تشيز مدريد</h3><p class="text-sm opacity-60">Cheese Madrid</p></div>
-                            <div class="text-xl font-bold">18 <span class="text-xs">ر.س</span></div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div><h3 class="font-bold">تشوكي</h3><p class="text-sm opacity-60">Choki</p></div>
-                            <div class="text-xl font-bold">12 <span class="text-xs">ر.س</span></div>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
-                            <div><h3 class="font-bold">فوجي كيك</h3><p class="text-sm opacity-60">Fuji Cake</p></div>
-                            <div class="text-xl font-bold">18 <span class="text-xs">ر.س</span></div>
-                        </div>
-                    </div>
-                </section>
+              <section class="menu-section">
+        <h2 class="text-2xl font-bold border-r-4 border-[#4a3f54] pr-3 mb-8">المشروبات الحارة</h2>
+        <div class="space-y-4">
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div class="flex items-center">
+                    <img src="latte.png" alt="Latte" class="item-img">
+                    <div><h3 class="font-bold">لاتيه</h3><p class="text-sm opacity-60">Hot - Latte</p></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">13 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('لاتيه', 13)" class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
             </div>
+            
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div class="flex items-center">
+                    <img src="spanish-latte.png" alt="Spanish Latte" class="item-img">
+                    <div><h3 class="font-bold">سبانيش لاتيه</h3><p class="text-sm opacity-60">Spanish Latte</p></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">14 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('سبانيش لاتيه', 14)" class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div class="flex items-center">
+                    <img src="cortado.png" alt="Cortado" class="item-img">
+                    <div><h3 class="font-bold">كورتادو</h3><p class="text-sm opacity-60">Hot Cortado</p></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">11 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('كورتادو', 11)" class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div class="flex items-center">
+                    <img src="cappuccino.jpg" alt="Cappuccino" class="item-img">
+                    <div><h3 class="font-bold">كابتشينو</h3><p class="text-sm opacity-60">Cappuccino</p></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">13 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('كابتشينو', 13)" class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div class="flex items-center">
+                    <img src="espresso.png" alt="Espresso" class="item-img">
+                    <div><h3 class="font-bold">اسبريسو</h3><p class="text-sm opacity-60">Espresso</p></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">8 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('اسبريسو', 8)" class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div class="flex items-center">
+                    <img src="flat-white.png" alt="Flat White" class="item-img">
+                    <div><h3 class="font-bold">فلات وايت</h3><p class="text-sm opacity-60">Flat White</p></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">13 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('فلات وايت', 13)" class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div class="flex items-center">
+                    <img src="coffee-day-hot.png" alt="Coffee Day" class="item-img">
+                    <div><h3 class="font-bold">قهوة اليوم</h3><p class="text-sm opacity-60">Coffee - Day</p></div>
+                </div>
+                <div class="price-tag text-sm space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span>صغير: <span class="font-bold text-lg">7</span></span>
+                        <button onclick="addToCart('قهوة اليوم صغير', 7)" class="bg-[#4a3f54] text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">+</button>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span>كبير: <span class="font-bold text-lg">9</span></span>
+                        <button onclick="addToCart('قهوة اليوم كبير', 9)"class="bg-[#4a3f54] text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div class="flex items-center">
+                    <img src="drip-hot.jpg" alt="V60" class="item-img">
+                    <div><h3 class="font-bold">قهوة مقطرة V60</h3><p class="text-sm opacity-60">Hot Drip Coffee</p></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">14 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('قهوة مقطرة', 14)" class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div class="flex items-center">
+                    <img src="hot-chocolate.jpg" alt="Hot Chocolate" class="item-img">
+                    <div><h3 class="font-bold">هوت تشوكلت</h3><p class="text-sm opacity-60">Hot Chocolate</p></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">15 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('هوت تشوكلت', 15)" class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div class="flex items-center">
+                    <img src="americano-hot.png" alt="Americano" class="item-img">
+                    <div><h3 class="font-bold">امريكانو</h3><p class="text-sm opacity-60">Hot Americano</p></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">11 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('امريكانو', 11)" class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu-section">
+        <h2 class="text-2xl font-bold border-r-4 border-[#4a3f54] pr-3 mb-8">المشروبات الباردة</h2>
+        <div class="space-y-4">
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div class="flex items-center">
+                    <img src="ice-latte.jpg" alt="Ice Latte" class="item-img">
+                    <div><h3 class="font-bold">ايس لاتيه</h3><p class="text-sm opacity-60">Ice - Latte</p></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">14 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('ايس لاتيه', 14)" class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div class="flex items-center">
+                    <img src="ice-spanish.jpg" alt="Ice Spanish" class="item-img">
+                    <div><h3 class="font-bold">ايس سبانيش</h3><p class="text-sm opacity-60">Ice Spanish</p></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">15 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('ايس سبانيش', 15)" class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div class="flex items-center">
+                    <img src="matcha.png" alt="Matcha" class="item-img">
+                    <div><h3 class="font-bold">ماتشا</h3><p class="text-sm opacity-60">Ice matcha</p></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">16 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('ماتشا', 16)" class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div class="flex items-center">
+                    <img src="hibiscus.png" alt="Hibiscus" class="item-img">
+                    <div><h3 class="font-bold">ايس كركدية</h3><p class="text-sm opacity-60">Ice Hibiscus</p></div>
+                </div>
+                <div class="price-tag text-sm space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span>صغير: <span class="font-bold text-lg">8</span></span>
+                        <button onclick="addToCart('ايس كركدية', 8)" class="bg-[#4a3f54] text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">+</button>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span>كبير: <span class="font-bold text-lg">12</span></span>
+                        <button onclick="addToCart('ايس كركدية', 12)" class="bg-[#4a3f54] text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div class="flex items-center">
+                    <img src="alfredo-espresso.png" alt="Alfredo" class="item-img">
+                    <div><h3 class="font-bold">الفريدو اسبريسو</h3><p class="text-sm opacity-60">Ice Alfredo</p></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">12 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('الفريدو اسبريسو', 12)" class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div class="flex items-center">
+                    <img src="ice-americano.png" alt="Ice Americano" class="item-img">
+                    <div><h3 class="font-bold">ايس امريكانو</h3><p class="text-sm opacity-60">Ice Americano</p></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">12 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('ايس امريكانو', 12)" class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div class="flex items-center">
+                    <img src="ice-coffee-day.jpg" alt="Ice Coffee" class="item-img">
+                    <div><h3 class="font-bold">ايس قهوة اليوم</h3><p class="text-sm opacity-60">Ice Coffee Day</p></div>
+                </div>
+                <div class="price-tag text-sm space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span>صغير: <span class="font-bold text-lg">8</span></span>
+                        <button onclick="addToCart('ايس قهوة اليوم صغير', 8)"class="bg-[#4a3f54] text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">+</button>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span>كبير: <span class="font-bold text-lg">10</span></span>
+                        <button onclick="addToCart('ايس قهوة اليوم كبير', 10)"class="bg-[#4a3f54] text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div class="flex items-center">
+                    <img src="ice-drip.jpg" alt="Ice V60" class="item-img">
+                    <div><h3 class="font-bold">ايس دريب</h3><p class="text-sm opacity-60">Ice Drip Coffee</p></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">15 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('ايس دريب', 15)" class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu-section lg:border-r lg:border-gray-200 lg:pr-8">
+        <h2 class="text-2xl font-bold border-r-4 border-[#4a3f54] pr-3 mb-8">الحلا</h2>
+        <div class="space-y-4">
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div><h3 class="font-bold">شوكوميسو</h3><p class="text-sm opacity-60">Chocomisu</p></div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">18 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('شوكوميسو', 18)"class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
+            </div>
+            
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div><h3 class="font-bold">تشيز مدريد</h3><p class="text-sm opacity-60">Cheese Madrid</p></div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">18 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('تشيز مدريد', 18)" class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div><h3 class="font-bold">تشوكي</h3><p class="text-sm opacity-60">Choki</p></div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">12 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('تشوكي', 12)" class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center border-b border-dashed border-gray-300 py-3 menu-item px-3 rounded-lg">
+                <div><h3 class="font-bold">فوجي كيك</h3><p class="text-sm opacity-60">Fuji Cake</p></div>
+                <div class="flex items-center gap-3">
+                    <div class="text-xl font-bold">18 <span class="text-xs">ر.س</span></div>
+                    <button onclick="addToCart('فوجي كيك', 18)" class="bg-[#4a3f54] text-white w-8 h-8 rounded-full flex items-center justify-center hover:scale-110 transition-transform">+</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 
             <div class="flex justify-center items-center gap-8 mt-16 mb-8">
                 <a href="https://www.instagram.com/sanapluscafe" target="_blank" class="social-icon">
@@ -262,7 +369,39 @@
                 <h3 class="text-2xl font-bold text-gray-400 mb-2">لا توجد عروض حالياً</h3>
             </div>
         </div>
- 
+
+
+      <div id="cart-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-[2000] flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-md shadow-2xl">
+        <h3 class="text-xl font-bold mb-4 text-[#4a3f54] border-b pb-2">🛒 سلة طلباتك</h3>
+        
+        <div id="cart-items" class="max-h-60 overflow-y-auto space-y-2 mb-4 p-2 bg-gray-50 rounded-lg">
+            </div>
+
+        <div class="border-t pt-4 mb-6">
+            <div class="flex justify-between font-bold text-lg text-[#4a3f54]">
+                <span>الإجمالي النهائي:</span>
+                <div>
+                    <span id="cart-total">0</span>
+                    <span class="text-sm">ر.س</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-3">
+            <button onclick="sendOrderWhatsApp()" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-colors">
+                 واتساب إرسال الطلب
+            </button>
+            <button onclick="closeCart()" class="w-full bg-gray-100 hover:bg-gray-200 text-[#4a3f54] py-2 rounded-xl transition-colors">
+                إغلاق القائمة
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+        
 
         <footer class="mt-24 text-center border-t border-gray-200 pt-8 opacity-70">
             <p>جميع الأسعار تشمل ضريبة القيمة المضافة</p>
@@ -329,7 +468,7 @@
         });
     }
 
-    loadOffers();
+loadOffers();
 
     function switchTab(tabName) {
         const sectionMenu = document.getElementById('section-menu');
@@ -350,31 +489,89 @@
         }
     }
 
+    // --- نظام السلة المطوّر ---
+    let cart = [];
 
-async function countUniqueVisitor() {
-    try {
-        const today = new Date().toDateString();
-        // التحقق مما إذا كان الزائر قد دخل اليوم مسبقاً
-        if (localStorage.getItem('visited_today') !== today) {
-            
-            await db.collection('analytics').doc('visitors').set({
-                // زيادة العداد بمقدار 1
-                total: firebase.firestore.FieldValue.increment(1),
-                // تسجيل وقت آخر زيارة (اختياري ولكنه مفيد)
-                lastUpdate: firebase.firestore.FieldValue.serverTimestamp()
-            }, { merge: true });
-
-            // حفظ التاريخ في متصفح المستخدم لعدم تكرار الحساب اليوم
-            localStorage.setItem('visited_today', today);
-        }
-    } catch (error) {
-        console.error("خطأ في تحديث عداد الزوار:", error);
+    function addToCart(name, price) {
+        cart.push({name, price});
+        updateCartUI();
     }
-}
 
-// استدعاء الدالة
-countUniqueVisitor();
-    
+    function updateCartUI() {
+        const cartBtn = document.getElementById('cart-btn');
+        const cartCount = document.getElementById('cart-count');
+        const cartTotal = document.getElementById('cart-total');
+        
+        let total = cart.reduce((sum, item) => sum + item.price, 0);
+        
+        if (cart.length > 0) {
+            cartBtn.classList.remove('hidden'); // إظهار الزر
+            cartCount.innerText = cart.length;
+            if(cartTotal) cartTotal.innerText = total;
+        } else {
+            cartBtn.classList.add('hidden'); // إخفاء الزر إذا فرغت السلة
+        }
+    }
+
+    function openCart() {
+        document.getElementById('cart-modal').classList.remove('hidden');
+        const itemsDiv = document.getElementById('cart-items');
+        
+        if (cart.length === 0) {
+            itemsDiv.innerHTML = '<p class="text-center text-gray-400 py-4">السلة فارغة</p>';
+            return;
+        }
+
+        itemsDiv.innerHTML = cart.map((item, index) => `
+            <div class="flex justify-between items-center border-b border-gray-100 py-2">
+                <span class="text-sm font-bold">${item.name}</span>
+                <div class="flex items-center gap-3">
+                    <span class="text-sm">${item.price} ر.س</span>
+                    <button onclick="removeFromCart(${index})" class="text-red-500 text-xs">حذف</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function closeCart() {
+        document.getElementById('cart-modal').classList.add('hidden');
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartUI();
+        openCart();
+    }
+
+    function sendOrderWhatsApp() {
+        if (cart.length === 0) return;
+        let message = "*طلب جديد من منيو سنا بلس:*%0a%0a";
+        cart.forEach((item, i) => message += `${i+1}. ${item.name} (${item.price} ر.س)%0a`);
+        let total = cart.reduce((sum, item) => sum + item.price, 0);
+        message += `%0a💰 *الإجمالي: ${total} ر.س*`;
+        window.open(`https://wa.me/966564480556?text=${message}`, '_blank');
+    }
+
+    // --- نظام الإحصائيات ---
+    async function countUniqueVisitor() {
+        try {
+            const today = new Date().toISOString().split('T')[0]; 
+            if (localStorage.getItem('last_visit') !== today) {
+                await db.collection('analytics').doc('visitors').set({
+                    total: firebase.firestore.FieldValue.increment(1),
+                    lastUpdate: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true });
+                localStorage.setItem('last_visit', today);
+            }
+        } catch (e) { console.log(e); }
+    }
+    countUniqueVisitor();
     </script>
+
+    <div id="cart-btn" onclick="openCart()" class="hidden fixed bottom-6 left-6 bg-[#4a3f54] text-white px-6 py-4 rounded-full shadow-2xl cursor-pointer z-[1000] flex items-center gap-3 animate-bounce">
+        <span class="text-xl">🛒</span>
+        <span id="cart-count" class="bg-red-500 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold">0</span>
+        <span class="font-bold">عرض السلة</span>
+    </div>
 </body>
 </html>
